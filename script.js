@@ -10,7 +10,7 @@ const sqLen = boardLen / 8;
 const darkCol = '#77995b';
 const lightCol = '#eeeeee';
 
-const strPieces = 'TNBQKBNT'; // order of pieces in chess board
+const strPieces = 'RNBQKBNR'; // order of pieces in chess board
 
 let tablero = [];
 
@@ -28,6 +28,7 @@ function drawBoard() {
   for (let rank = 0; rank < 8; rank++) {
     for (let file = 0; file < 8; file++) {
       const p = tablero[rank][file];
+      console.log(p);
       if (p) {
         drawPiece(p, file * sqLen, rank * sqLen);
       }
@@ -36,7 +37,7 @@ function drawBoard() {
 }
 
 function drawPiece(p, x, y) {
-  const pos = 'KQBNTP'; // Order of pieces in png sprite
+  const pos = 'KQBNRP'; // Order of pieces in png sprite
   let idx = pos.indexOf(p.letter);
   let height = p.color == 'b' ? 100 : 0;
   ctx.drawImage(img, 100 * idx, height, 100, 100, x, y, sqLen, sqLen);
