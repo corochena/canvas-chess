@@ -3,3 +3,5 @@ const ctx = canvas.getContext('2d');
 
 const img = new Image();
 img.src = 'https://i.ibb.co/kSrfw6R/Chess-Pieces-Sprite-compressed.png';
+
+ctx.drawImage(img,0,0)
