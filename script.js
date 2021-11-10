@@ -22,6 +22,14 @@ function drawBoard() {
       ctx.fillRect(row * sqLen, col * sqLen, sqLen, sqLen);
     }
   }
+
+  for (let l of strPieces) {
+    drawPiece({ letter: l, color: 'b' }, i * sqLen, 0);
+    drawPiece({ letter: 'P', color: 'b' }, i * sqLen, sqLen);
+    drawPiece({ letter: l, color: 'w' }, i * sqLen, 7 * sqLen);
+    drawPiece({ letter: 'P', color: 'w' }, i * sqLen, 6 * sqLen);
+    i++;
+  }
 }
 
 function drawPiece(p, x, y) {
@@ -32,4 +40,3 @@ function drawPiece(p, x, y) {
 }
 
 drawBoard();
-drawPiece({ letter: 'N', color: 'b' }, 300, 200);
