@@ -10,6 +10,8 @@ const sqLen = boardLen / 8;
 const darkCol = '#77995b';
 const lightCol = '#eeeeee';
 
+const strPieces = 'TNBQKBNT'; // order of pieces in chess board
+
 function drawBoard() {
   let i = 0;
 
@@ -22,4 +24,12 @@ function drawBoard() {
   }
 }
 
-drawBoard()
+function drawPiece(p, x, y) {
+  const pos = 'KQBNTP'; // Order of pieces in png sprite
+  let idx = pos.indexOf(p.letter);
+  let height = p.color == 'b' ? 100 : 0;
+  ctx.drawImage(img, 100 * idx, height, 100, 100, x, y, sqLen, sqLen);
+}
+
+drawBoard();
+drawPiece({ letter: 'N', color: 'b' }, 300, 200);
