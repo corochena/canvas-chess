@@ -70,3 +70,10 @@ window.addEventListener('load', (e) => {
   drawBoard();
 });
 
+canvas.addEventListener('click', (e) => {
+  ctx.strokeStyle = 'brown';
+  ctx.lineWidth = 2;
+  const x = parseInt(e.layerX / sqLen) * sqLen;
+  const y = parseInt(e.layerY / sqLen) * sqLen;
+  ctx.strokeRect(x, y, sqLen, sqLen);
+});
