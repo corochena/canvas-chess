@@ -15,8 +15,6 @@ const strPieces = 'RNBQKBNR'; // order of pieces in chess board
 let tablero = [];
 
 function drawBoard() {
-  let i = 0;
-
   for (let row = 0; row < 8; row++) {
     for (let col = 0; col < 8; col++) {
       let color = (row + col) % 2 != 0 ? darkCol : lightCol;
@@ -25,12 +23,11 @@ function drawBoard() {
     }
   }
 
-  for (let rank = 0; rank < 8; rank++) {
-    for (let file = 0; file < 8; file++) {
-      const p = tablero[rank][file];
-      console.log(p);
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      const p = tablero[row][col];
       if (p) {
-        drawPiece(p, file * sqLen, rank * sqLen);
+        drawPiece(p, col * sqLen, row * sqLen);
       }
     }
   }
@@ -65,6 +62,13 @@ function iniciarTablero() {
   }
 }
 
+function getPos(x, y) {
+  const files = 'abcdefgh';
+  let file = files[parseInt(x / sqLen)];
+  let rank = 8 - parseInt(y / sqLen);
+  console.log(file + rank);
+}
+
 window.addEventListener('load', (e) => {
   iniciarTablero();
   drawBoard();
@@ -75,5 +79,6 @@ canvas.addEventListener('click', (e) => {
   ctx.lineWidth = 2;
   const x = parseInt(e.layerX / sqLen) * sqLen;
   const y = parseInt(e.layerY / sqLen) * sqLen;
+  getPos(x, y);
   ctx.strokeRect(x, y, sqLen, sqLen);
 });
