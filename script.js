@@ -65,5 +65,8 @@ function iniciarTablero() {
   }
 }
 
-iniciarTablero();
-drawBoard();
+window.addEventListener('load', (e) => {
+  iniciarTablero();
+  drawBoard();
+});
+
