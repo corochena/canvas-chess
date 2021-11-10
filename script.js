@@ -29,7 +29,7 @@ function drawBoard() {
     for (let file = 0; file < 8; file++) {
       const p = tablero[rank][file];
       if (p) {
-        drawPiece(p, rank * sqLen, file * sqLen);
+        drawPiece(p, file * sqLen, rank * sqLen);
       }
     }
   }
