@@ -12,6 +12,8 @@ const lightCol = '#eeeeee';
 
 const strPieces = 'TNBQKBNT'; // order of pieces in chess board
 
+let tablero = [];
+
 function drawBoard() {
   let i = 0;
 
@@ -23,12 +25,13 @@ function drawBoard() {
     }
   }
 
-  for (let l of strPieces) {
-    drawPiece({ letter: l, color: 'b' }, i * sqLen, 0);
-    drawPiece({ letter: 'P', color: 'b' }, i * sqLen, sqLen);
-    drawPiece({ letter: l, color: 'w' }, i * sqLen, 7 * sqLen);
-    drawPiece({ letter: 'P', color: 'w' }, i * sqLen, 6 * sqLen);
-    i++;
+  for (let rank = 0; rank < 8; rank++) {
+    for (let file = 0; file < 8; file++) {
+      const p = tablero[rank][file];
+      if (p) {
+        drawPiece(p, 0, 0);
+      }
+    }
   }
 }
 
@@ -39,4 +42,27 @@ function drawPiece(p, x, y) {
   ctx.drawImage(img, 100 * idx, height, 100, 100, x, y, sqLen, sqLen);
 }
 
+function iniciarTablero() {
+  // it fills the global 2D array tablero with objects returned by piece()
+
+  function piece(row, col) {
+    let letter, color;
+    const l = 'RNBQKBNR';
+    if (row < 2) color = 'b';
+    else if (row > 5) color = 'w';
+    else return null;
+
+    letter = row == 0 || row == 7 ? l[col] : 'P';
+    return { letter, color };
+  }
+
+  for (var i = 0; i < 8; i++) {
+    tablero[i] = []; // weird, I would normally use tablero.push([])
+    for (var j = 0; j < 8; j++) {
+      tablero[i].push(piece(i, j));
+    }
+  }
+}
+
+iniciarTablero();
 drawBoard();
