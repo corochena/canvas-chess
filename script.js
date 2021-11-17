@@ -40,14 +40,16 @@ function drawPiece(p, x, y) {
   ctx.drawImage(img, 100 * idx, height, 100, 100, x, y, sqLen, sqLen);
 }
 
-function iniciarTablero() {
+function iniciarTablero(reverse = false) {
   // it fills the global 2D array tablero with objects returned by piece()
 
   function piece(row, col) {
     let letter, color;
     const l = 'RNBQKBNR';
-    if (row < 2) color = 'b';
-    else if (row > 5) color = 'w';
+    const player1 = reverse ? 'b' : 'w';
+    const player2 = reverse ? 'w' : 'b';
+    if (row < 2) color = player2;
+    else if (row > 5) color = player1;
     else return null;
 
     letter = row == 0 || row == 7 ? l[col] : 'P';
